@@ -3,18 +3,23 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ch.rasc</groupId>
 	<artifactId>edsutil</artifactId>
-	<version>2.0.7</version>
+	<version>3.0.0</version>
+
+	<parent>
+		<artifactId>oss-parent</artifactId>
+		<groupId>org.sonatype.oss</groupId>
+		<version>7</version>
+	</parent>
 
 	<prerequisites>
 		<maven>3.1.0</maven>
 	</prerequisites>
 
-	<properties>
-		<hibernate.version>4.3.8.Final</hibernate.version>
-		<querydsl.version>3.6.0</querydsl.version>
-	</properties>
-
 	<inceptionYear>2013</inceptionYear>
+
+	<name>edsutil</name>
+	<description>Collection of utility classes for extdirectspring web applications</description>
+	<url>https://github.com/ralscha/edsutil/</url>
 
 	<developers>
 		<developer>
@@ -30,6 +35,22 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/ralscha/edsutil/issues</url>
+	</issueManagement>
+
+	<scm>
+		<connection>scm:git:git@github.com:ralscha/edsutil.git</connection>
+		<developerConnection>scm:git:git@github.com:ralscha/edsutil.git</developerConnection>
+		<url>https://github.com/ralscha/edsutil.git</url>
+	</scm>
+
+	<properties>
+		<hibernate.version>4.3.8.Final</hibernate.version>
+		<querydsl.version>3.6.0</querydsl.version>
+	</properties>
 
 	<dependencyManagement>
 		<dependencies>
@@ -138,7 +159,7 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-commons</artifactId>
-			<version>1.9.1.RELEASE</version>
+			<version>1.9.2.RELEASE</version>
 			<optional>true</optional>
 		</dependency>
 
@@ -192,6 +213,7 @@
 						<exclude>**/*.py</exclude>
 						<exclude>**/*.yml</exclude>
 						<exclude>**/.gitignore</exclude>
+						<exclude>LICENSE</exclude>
 					</excludes>
 					<strictCheck>true</strictCheck>
 				</configuration>
@@ -208,14 +230,6 @@
 
 		</plugins>
 	</build>
-
-
-	<distributionManagement>
-		<repository>
-			<id>localwww</id>
-			<url>file:///Z:/var/repo/</url>
-		</repository>
-	</distributionManagement>
 
 	<profiles>
 		<profile>
