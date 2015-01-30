@@ -31,7 +31,7 @@ import com.mysema.query.types.OrderSpecifier;
 import com.mysema.query.types.path.EntityPathBase;
 import com.mysema.query.types.path.PathBuilder;
 
-public abstract class QueryUtil {
+public abstract class QuerydslUtil {
 
 	public static void addPagingAndSorting(JPQLQuery query,
 			ExtDirectStoreReadRequest request, Class<?> clazz,
