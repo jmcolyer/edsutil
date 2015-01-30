@@ -24,9 +24,7 @@ import ch.ralscha.extdirectspring.bean.GroupInfo;
 import ch.ralscha.extdirectspring.bean.SortDirection;
 import ch.ralscha.extdirectspring.bean.SortInfo;
 
-public enum PropertyComparatorFactory {
-
-	INSTANCE;
+public abstract class PropertyComparatorFactory {
 
 	public static <T> Comparator<T> createComparator(String propertyName) {
 		try {
