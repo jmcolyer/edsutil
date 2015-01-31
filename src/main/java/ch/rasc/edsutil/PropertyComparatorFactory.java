@@ -27,8 +27,13 @@ import ch.ralscha.extdirectspring.bean.SortInfo;
 public abstract class PropertyComparatorFactory {
 
 	public static <T> Comparator<T> createComparator(String propertyName) {
+		return createComparator(propertyName, false);
+	}
+
+	public static <T> Comparator<T> createComparator(String propertyName,
+			boolean ignoreCase) {
 		try {
-			return new PropertyComparator<>(propertyName);
+			return new PropertyComparator<>(propertyName, ignoreCase);
 		}
 		catch (ParseException e) {
 			return null;
@@ -36,9 +41,9 @@ public abstract class PropertyComparatorFactory {
 	}
 
 	public static <T> Comparator<T> createComparator(String propertyName,
-			SortDirection sortDirection) {
+			SortDirection sortDirection, boolean ignoreCase) {
 		try {
-			Comparator<T> comparator = new PropertyComparator<>(propertyName);
+			Comparator<T> comparator = new PropertyComparator<>(propertyName, ignoreCase);
 
 			if (sortDirection == SortDirection.DESCENDING) {
 				comparator = comparator.reversed();
@@ -49,6 +54,11 @@ public abstract class PropertyComparatorFactory {
 		catch (ParseException e) {
 			return null;
 		}
+	}
+
+	public static <T> Comparator<T> createComparator(String propertyName,
+			SortDirection sortDirection) {
+		return createComparator(propertyName, sortDirection, false);
 	}
 
 	@SuppressWarnings("unchecked")
