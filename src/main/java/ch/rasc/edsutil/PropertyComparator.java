@@ -18,15 +18,25 @@ package ch.rasc.edsutil;
 import java.util.Comparator;
 
 import org.springframework.expression.Expression;
+import org.springframework.expression.spel.SpelCompilerMode;
+import org.springframework.expression.spel.SpelParserConfiguration;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 public class PropertyComparator<T> implements Comparator<T> {
-	private final static SpelExpressionParser parser = new SpelExpressionParser();
+	private final static SpelExpressionParser parser = new SpelExpressionParser(
+			new SpelParserConfiguration(SpelCompilerMode.IMMEDIATE, null));
 
 	private final Expression readPropertyExpression;
+	private final boolean ignoreCase;
 
 	public PropertyComparator(String property) {
 		this.readPropertyExpression = parser.parseExpression(property);
+		this.ignoreCase = false;
+	}
+
+	public PropertyComparator(String property, boolean ignoreCase) {
+		this.readPropertyExpression = parser.parseExpression(property);
+		this.ignoreCase = ignoreCase;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -45,7 +55,7 @@ public class PropertyComparator<T> implements Comparator<T> {
 			return 1;
 		}
 
-		if (left instanceof String) {
+		if (left instanceof String && ignoreCase) {
 			return ((String) left).compareToIgnoreCase((String) right);
 		}
 
